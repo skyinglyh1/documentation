@@ -41,22 +41,22 @@
     
     3.1 什么是大小端地址？什么是Base58地址？
         
-        大端地址与小端地址与Base58地址是一一对应的关系。
+    大端地址与小端地址与Base58地址是一一对应的关系。
 
-        举例来说，某合约的Hash是：996a2e5905752b88e6fdb337dbb9852889efe2fa，则合约帐户的大端地址为其Hash，其小端地址为：fae2ef892885b9db37b3fde6882b7505592e6a99，其Base58地址(通常以大写的```A```开头)为AeeSSDwLehqHqmcf8eHbciXAsGzVk93X4w。
+    举例来说，某合约的Hash是：996a2e5905752b88e6fdb337dbb9852889efe2fa，则合约帐户的大端地址为其Hash，其小端地址为：fae2ef892885b9db37b3fde6882b7505592e6a99，其Base58地址(通常以大写的```A```开头)为AeeSSDwLehqHqmcf8eHbciXAsGzVk93X4w。
     
     3.2 转换工具有哪些？
         
-        [SmartX](https://smartx.ont.io/#/)上面创建你的项目之后，在编译、布署一栏有一个工具选项。可以进行转换。
-        同时，这里也有一个非常好用的[网址](https://peterlinx.github.io/DataTransformationTools/)可以进行格式转换！！！
+    [SmartX](https://smartx.ont.io/#/)上面创建你的项目之后，在编译、布署一栏有一个工具选项。可以进行转换。
+    同时，这里也有一个非常好用的[网址](https://peterlinx.github.io/DataTransformationTools/)可以进行格式转换！！！
     
     3.3 即然合约帐户的私钥不可知，那该如何把资产转出合约呢？
         
-        请参照下面关于```CheckWitness```的功能。
+    请参照下面关于```CheckWitness```的功能。
     
     3.4 怎样在合约内部拿到合约帐户的地址？
         
-        编译器里提供了库函数，即[```ontology.interop.System.ExecutionEngine```](https://github.com/ontio/ontology-python-compiler/blob/master/ontology/interop/System/ExecutionEngine.py)中的```GetExecutingScriptHash()```方法，返回值却为合约Hash的反序，或合约帐户的小端地。在合约内部可直接用来作为地址来使用，构造转账交易。
+    编译器里提供了库函数，即[```ontology.interop.System.ExecutionEngine```](https://github.com/ontio/ontology-python-compiler/blob/master/ontology/interop/System/ExecutionEngine.py)中的```GetExecutingScriptHash()```方法，返回值却为合约Hash的反序，或合约帐户的小端地。在合约内部可直接用来作为地址来使用，构造转账交易。
 
 4. 关于交易回滚？
     
@@ -198,48 +198,49 @@
     18.2 当进行动态合约的调用```DynamicAppCall```时，其中的被调用合约的地址参数应该是合约Hash的反序，即被调用合约的小端地址。
 
 
-18.  合约=逻辑+状态,如何写逻辑，如何存取改状态？
+18. 合约=逻辑+状态,如何写逻辑，如何存取改状态？
     
-    19.1 关于逻辑部分，可以参考[编译器2.0](https://github.com/ontio/ontology-python-compiler)，或直接参考[合约模版](https://github.com/ONT-Avocados/python-template)。
-
+    18.1 关于逻辑部分，可以参考[编译器2.0](https://github.com/ontio/ontology-python-compiler)，或直接参考[合约模版](https://github.com/ONT-Avocados/python-template)。
+    
     19.2 关于存取状态，
+        
+        
+    19.2.1 存状态，使用```Put(GetContext(), theKey, theValue)```，此操作会更改链上合约内的状态，即将```theKey```对应的值更改为```theValue```。
+    
+    19.2.2 取状态，使用```value = Get(GetContext(), theKey)```，此操作会查询链上合约内```theKey```对应的状态值。
 
-        19.2.1 存状态，使用```Put(GetContext(), theKey, theValue)```，此操作会更改链上合约内的状态，即将```theKey```对应的值更改为```theValue```。
-
-        19.2.2 取状态，使用```value = Get(GetContext(), theKey)```，此操作会查询链上合约内```theKey```对应的状态值。
 
 
-
-19. 开发合约=>编译合约=>部署合约=>调用合约=>测试合约的流程与工具有哪些？
+1.  开发合约=>编译合约=>部署合约=>调用合约=>测试合约的流程与工具有哪些？
 
     20.1 开发合约：
 
-        20.1.1 智能合约中使用的函数可以在[编译器1.0](https://github.com/ontio/neo-boa)和[编译器2.0](https://github.com/ontio/ontology-python-compiler)找到引用接口，推荐使用2.0编译器。
+    20.1.1 智能合约中使用的函数可以在[编译器1.0](https://github.com/ontio/neo-boa)和[编译器2.0](https://github.com/ontio/ontology-python-compiler)找到引用接口，推荐使用2.0编译器。
 
-        20.1.2. 可以使用的函数也可以在[SmartX](https://smartx.ont.io/)上面得到提示。注：SmartX是一种在线合约开发、编译、布署网站。[这里](https://ontio.github.io/documentation/SmartX_Tutorial_en.html)是SmartX使用教程。
+    20.1.2. 可以使用的函数也可以在[SmartX](https://smartx.ont.io/)上面得到提示。注：SmartX是一种在线合约开发、编译、布署网站。[这里](https://ontio.github.io/documentation/SmartX_Tutorial_en.html)是SmartX使用教程。
     
     20.2 合约编译:
 
-        20.2.1 使用本地编译器编译
+    20.2.1 使用本地编译器编译
 
-        20.2.2 通过[SmartX](https://smartx.ont.io/)编译，推荐使用SmartX。
+    20.2.2 通过[SmartX](https://smartx.ont.io/)编译，推荐使用SmartX。
 
     20.3 合约布署：
-        
-        20.3.1 可以通过SmartX，连上cyano wallet(Ontology的cyano wallet是一种谷歌浏览器钱包，可以用Ethereum的MetaMask来类比)，然后指定网络(或IP地址)，可将合约布署到本地网、或测试网、或主网。
+    
+    20.3.1 可以通过SmartX，连上cyano wallet(Ontology的cyano wallet是一种谷歌浏览器钱包，可以用Ethereum的MetaMask来类比)，然后指定网络(或IP地址)，可将合约布署到本地网、或测试网、或主网。
 
-        20.3.2 在启动节点的情况下，可以[通过[Cli](https://github.com/ontio/ontology/blob/master/docs/specifications/cli_user_guide_CN.md#5-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6)，将合约布署到本地、测试网或主网。
+    20.3.2 在启动节点的情况下，可以[通过[Cli](https://github.com/ontio/ontology/blob/master/docs/specifications/cli_user_guide_CN.md#5-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6)，将合约布署到本地、测试网或主网。
 
     20.4 合约测试：
 
-        20.4.1 SmartX上可以进行运行、调试合约内的函数。
+    20.4.1 SmartX上可以进行运行、调试合约内的函数。
 
-        20.4.2 可以通过Cli运行、调试合约函数。
+    20.4.2 可以通过Cli运行、调试合约函数。
 
-        20.4.3 可以以通过go/java/ts/python sdk 来测试合约，sdk中包含一些OEP4 OEP5 OEP8调用的相关例子可供参考。详细信息，请在[官方github帐号](https://github.com/ontio)下面找到对应的sdk查看。
+    20.4.3 可以以通过go/java/ts/python sdk 来测试合约，sdk中包含一些OEP4 OEP5 OEP8调用的相关例子可供参考。详细信息，请在[官方github帐号](https://github.com/ontio)下面找到对应的sdk查看。
 
 
-20. OEP4, OEP5, OEP8协议的区别？
+2.  OEP4, OEP5, OEP8协议的区别？
     
     如果你对```ERC20```，```ERC721```以及```ERC1155```熟悉，那么```OEP4```对应于```ERC20```，```OEP5```对应于```ERC721```，```OEP8```对应于```ERC1155```。
 
@@ -253,7 +254,7 @@
 
     [此处](https://github.com/ontio/OEPs/tree/master/OEPS)有更详细的协议介绍，[此处](https://github.com/ONT-Avocados/python-template)有协议实现的合约模版。
 
-21. 暂时目前```for i in range```不支持，但是支持```for i in list```。
+3.  暂时目前```for i in range```不支持，但是支持```for i in list```。
     ```
     # Below wrong 
     i = 0
@@ -265,15 +266,16 @@
         Notify([i])
     ```
 
-22. debug合约所需的测试节点怎么产生，即调试合约的本地测试节点？
+4.  debug合约所需的测试节点怎么产生，即调试合约的本地测试节点？
 
     可以在[```runtime.go```](https://github.com/ontio/ontology/blob/master/smartcontract/service/neovm/runtime.go)中，增加打印信息来调试被调用的合约函数，观察合约函数执行到哪一步出了问题。
 
 
-23. 测试合约时，如何对执行的notify或是预执行的数据解析？
+5.  测试合约时，如何对执行的notify或是预执行的数据解析？
     
     23.1 解析```Notify```，以OEP4的```transferMulti```为例：
-        ``` 
+    
+        ```
         ontology.exe info status d8e5863a54f368ad950d0993d38eb504c7eddafdd39dcc81d5676887fe35 b1cf
         Transaction states:
         {
@@ -322,27 +324,27 @@
         ``` 
 
     23.2 解析预执行返回的数据：
+    
+    23.2.1 合约返回的是数字：将预执行的结果(若为空或```00```则为零)进行反序(每一个字节作为一个单位进行反序)，然后作为十六进制数字转换为十进制，即为我们想要得到的数据。
 
-        23.2.1 合约返回的是数字：将预执行的结果(若为空或```00```则为零)进行反序(每一个字节作为一个单位进行反序)，然后作为十六进制数字转换为十进制，即为我们想要得到的数据。
-        
-        23.2.2 合约返回的是字符串：将预执行的结果作为十六进制字符串，转换为字符串，即为我们想要的字符串。
+    23.2.2 合约返回的是字符串：将预执行的结果作为十六进制字符串，转换为字符串，即为我们想要的字符串。
 
-        23.2.3 合约返回的是地址：将预执行的结果作为小端地址，转换为Base58地址，即为我们想要得到的地址。
+    23.2.3 合约返回的是地址：将预执行的结果作为小端地址，转换为Base58地址，即为我们想要得到的地址。
 
-        23.2.4 合约返回的是布尔：将预执行的结果转为数字后，若为零则```False```，若为1则```True```。
+    23.2.4 合约返回的是布尔：将预执行的结果转为数字后，若为零则```False```，若为1则```True```。
 
-        23.2.5 合约返回的是List: 将预执行的结果，依次取出，按照以上基本数据类型进行解析，即得到想要的结果。
+    23.2.5 合约返回的是List: 将预执行的结果，依次取出，按照以上基本数据类型进行解析，即得到想要的结果。
 
-24. 如何像Ethereum合约上面那样做权限管理？
+6.  如何像Ethereum合约上面那样做权限管理？
     
     [这里]()给出了权限管理的合约模版。
 
-25. 合约内没有定时器，需要外部触发。
+7.  合约内没有定时器，需要外部触发。
 
     合约内没有定时器，但提供了获取当前时间戳的函数，即[```ontology.interop.System.Runtime```](https://github.com/ontio/ontology-python-compiler/blob/master/ontology/interop/System/Runtime.py)中的```GetTime()```函数，返回值的单位为秒。
     因需要在合约外部进行触发，比如后台添加一个定时调用合约函数的功能，为防止误操作，最好在合约被调用函数内部，通过获取到的当前时间戳对调用该函数的时间进行规范处理。
 
-26. 在线转换数据工具有两个，所有版本的sdk都支持了数据类型的转换。
+8.  在线转换数据工具有两个，所有版本的sdk都支持了数据类型的转换。
 
     工具一：[DataTransformationTools](https://peterlinx.github.io/DataTransformationTools/)。
     
