@@ -237,7 +237,7 @@ ontology.exe asset withdrawong 1
 
 19.4.2 可以通过Cli运行、调试合约函数。
 
-19.4.3 可以以通过go/java/ts/python sdk 来测试合约，sdk中包含一些OEP4 OEP5 OEP8调用的相关例子可供参考。详细信息，请在[官方github帐号](https://github.com/ontio)下面找到对应的sdk查看。
+19.4.3 可以通过go/java/ts/python sdk 来测试合约，sdk中包含一些[OEP4 OEP5 OEP8](https://github.com/ontio/OEPs/tree/master/OEPS)调用的相关例子可供参考。详细信息，请在[官方github帐号](https://github.com/ontio)下面找到对应的sdk查看。
 
 
 #### 20.  OEP4, OEP5, OEP8协议的区别？

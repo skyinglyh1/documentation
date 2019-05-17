@@ -227,50 +227,50 @@ Usually, there are only few scenarios where it's necessary for us to use the con
 
 18.2.2 Query State, utilize ```value = Get(GetContext(), theKey)``` to check the corresponding value of ```theKey``` within the smart contract.
 
-#### 19.  开发合约=>编译合约=>部署合约=>调用合约=>测试合约的流程与工具有哪些？
+#### 19. During the flow of Develop contract -> Compile contract -> Deploy contract -> Invoke contract -> Test contract, what are the tools?
 
-19.1 开发合约：
+19.1 Develop contract.
 
-19.1.1 智能合约中使用的函数可以在[编译器1.0](https://github.com/ontio/neo-boa)和[编译器2.0](https://github.com/ontio/ontology-python-compiler)找到引用接口，推荐使用2.0编译器。
+19.1.1 The library method within the compiler that can be used directly within the smart contract can be found in [compiler 1.0](https://github.com/ontio/neo-boa) and [compiler 2.0](https://github.com/ontio/ontology-python-compiler), compiler 2.0 is recommended.
 
-19.1.2. 可以使用的函数也可以在[SmartX](https://smartx.ont.io/)上面得到提示。注：SmartX是一种在线合约开发、编译、布署网站。[这里](https://ontio.github.io/documentation/SmartX_Tutorial_en.html)是SmartX使用教程。
+19.1.2. There will exist reminder in online [SmartX](https://smartx.ont.io/). Note that SmartX is a online website supporing online development, compilation, and deployment. [Here](https://ontio.github.io/documentation/SmartX_Tutorial_en.html)是SmartX tutorial.
 
-19.2 合约编译:
+19.2 Compile contract.
 
-19.2.1 使用本地编译器编译
+19.2.1 Use the local offline compilert to compile the contract.
 
-19.2.2 通过[SmartX](https://smartx.ont.io/)编译，推荐使用SmartX。
+19.2.2 Compile the contract through [SmartX](https://smartx.ont.io/), which is recommended.
 
-19.3 合约布署：
+19.3 Deploy contract.
 
-19.3.1 可以通过SmartX，连上cyano wallet(Ontology的cyano wallet是一种谷歌浏览器钱包，可以用Ethereum的MetaMask来类比)，然后指定网络(或IP地址)，可将合约布署到本地网、或测试网、或主网。
+19.3.1 We can connect our cyano wallet into local net, test net or main net. Cyano wallet is a chrome plugin wallet for ontology blockchain, we can treat it as the MetaMask for ethereum blockchain.
+Through SmartX and cyano wallet, we can deploy the contract into the designated network. 
 
-19.3.2 在启动节点的情况下，可以[通过[Cli](https://github.com/ontio/ontology/blob/master/docs/specifications/cli_user_guide_CN.md#5-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6)，将合约布署到本地、测试网或主网。
+19.3.2 Under the condition that we have started the node, we can also deploy the contract [through Cli](https://github.com/ontio/ontology/blob/master/docs/specifications/cli_user_guide_CN.md#5-%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6) into the designated network.
 
-19.4 合约测试：
+19.4 Test contract.
 
-19.4.1 SmartX上可以进行运行、调试合约内的函数。
+19.4.1 We can invoke and debug the contract methods through SmartX.
 
-19.4.2 可以通过Cli运行、调试合约函数。
+19.4.2 We can invoke and debug the contract methods through CLI.
 
-19.4.3 可以以通过go/java/ts/python sdk 来测试合约，sdk中包含一些OEP4 OEP5 OEP8调用的相关例子可供参考。详细信息，请在[官方github帐号](https://github.com/ontio)下面找到对应的sdk查看。
+19.4.3 We can also test the contract thorugh go/java/ts/python sdk. Sdk has provided ample templates for invoking [OEP4, OEP5, and OEP8](https://github.com/ontio/OEPs/tree/master/OEPS) contract. For the details, please refers to the different types of sdk under [official github](https://github.com/ontio).
 
+#### 20.  What are the differences amount OEP4, OEP5 and OEP8?
 
-#### 20.  OEP4, OEP5, OEP8协议的区别？
-    
-如果你对```ERC20```，```ERC721```以及```ERC1155```熟悉，那么```OEP4```对应于```ERC20```，```OEP5```对应于```ERC721```，```OEP8```对应于```ERC1155```。
+If you are familiar with ```ERC20```, ```ERC721``` and ```ERC1155``` protocols, that would be easy since ```OEP4```, ```OEP5```, ```OEP8``` correspond with ```ERC20```, ```ERC721```, ```ERC1155```, respectively.
 
-如果对Ethereum中的这三种协议不熟悉的话， 简单来说，
+If you are not familiar with the above three protocols, in a nutshell, 
 
-OEP4是同质化资产的协议，资产之间互不区分。
+OEP4 is the protocol for the fungible tokens, all the tokens within one contract are the same.
 
-OEP5是非同质化资产的协议，每个资产是唯一的，不同资产是互相区分的。
+OEP5 is the protocol for the non-fungible tokens, all the tokens within one contract are different.
 
-OEP8相当于OEP4与OEP5的结合体，即包含不同种类的资产，每种资产的数量是多个的，每种资产内部是同质的，不同资产是不同质的。
+OEP8 is kind of the combination of OEP4 and OEP5. It contains different types of OEP4 token within one contract, and each kind of OEP4 token is differnt, similar to the differetn token in OEP5 protocol.
 
-[此处](https://github.com/ontio/OEPs/tree/master/OEPS)有更详细的协议介绍，[此处](https://github.com/ONT-Avocados/python-template)有协议实现的合约模版。
+[Here](https://github.com/ontio/OEPs/tree/master/OEPS) is the details of the protocols, [Here](https://github.com/ONT-Avocados/python-template) is the implementation of protocols.
 
-#### 21.  暂时目前```for i in range```不支持，但是支持```for i in list```。
+#### 21.  So far ```for i in range``` is supported, but ```for i in list``` is supported.
 
 ```
 # Below wrong 
@@ -283,14 +283,14 @@ for i in L:
     Notify([i])
 ```
 
-#### 22.  debug合约所需的测试节点怎么产生，即调试合约的本地测试节点？
+#### 22.  How to obtain the executable ontology that can help with developing the contract?
 
-可以在[```runtime.go```](https://github.com/ontio/ontology/blob/master/smartcontract/service/neovm/runtime.go)中，增加打印信息来调试被调用的合约函数，观察合约函数执行到哪一步出了问题。
+We can modify several places to print the Notify message or Log message in [```runtime.go```](https://github.com/ontio/ontology/blob/master/smartcontract/service/neovm/runtime.go), which 
+will help us observe place where the transaction fails and the reason why it fails.
 
-
-#### 23.  测试合约时，如何对执行的notify或是预执行的数据解析？
+#### 23.  When we test the conract, how to parse the execution result, like notify message and the pre-execution result?
     
-23.1 解析```Notify```，以OEP4的```transferMulti```为例：
+23.1 Parse```Notify```, take ```transferMulti``` in OEP4 for example.
 
     ```
     ontology.exe info status d8e5863a54f368ad950d0993d38eb504c7eddafdd39dcc81d5676887fe35 b1cf
@@ -298,14 +298,14 @@ for i in L:
     {
     "TxHash": "d8e5863a54f368ad950d0993d38eb504c7eddafdd39dcc81d5676887fe35b1cf",
     "State": 1,
-    "GasConsumed": 13509000,  // 执行合约函数所消耗的ONG即0.013509
+    "GasConsumed": 13509000,  // The consumed ONG as gas for execution or transaction
     "Notify": [
         {
             "ContractAddress": "3310277e27a0ed749a3525ca2f898ebcd7d6631e",
             "States": [
                 "7472616e73666572", // transfer的HexString
-                "616f2a4a38396ff203ea01e6c070ae421bb8ce2d",  // fromAcct(AQf4Mzu1YJrhz9f3aRkkwSm9n3qhXGSh4p)的小端地址
-                "aa6e06c79f864152ab7f3139074aad822ffea855",  // toAcct(AXK2KtCfcJnSMyRzSwTuwTKgNrtx5aXfFX)的小端地址
+                "616f2a4a38396ff203ea01e6c070ae421bb8ce2d",  // The little-endian address of fromAcct(AQf4Mzu1YJrhz9f3aRkkwSm9n3qhXGSh4p)
+                "aa6e06c79f864152ab7f3139074aad822ffea855",  // The little-endian address of toAcct(AXK2KtCfcJnSMyRzSwTuwTKgNrtx5aXfFX)的小端地址
                 "00e40b5402"  // amount=10000000000的HexNumber的反序
             ]
         },
@@ -314,7 +314,7 @@ for i in L:
             "States": [
                 "7472616e73666572",
                 "616f2a4a38396ff203ea01e6c070ae421bb8ce2d",
-                "aa6e06c79f864152ab7f3139074aad822ffea855",   // toAcct(AVXf5w8WD2y6jV1Lzi36oSKYNif1C7Surc)的小端地址
+                "aa6e06c79f864152ab7f3139074aad822ffea855",   // The little-endian address of toAcct(AVXf5w8WD2y6jV1Lzi36oSKYNif1C7Surc)
                 "00e40b5402"
             ]
         },
@@ -323,7 +323,7 @@ for i in L:
             "States": [
                 "7472616e73666572",
                 "616f2a4a38396ff203ea01e6c070ae421bb8ce2d",
-                "aa6e06c79f864152ab7f3139074aad822ffea855",    // toAcct(ANTPeXCffDZCaCXxY9u2UdssB2EYpP4BMh)的小端地址
+                "aa6e06c79f864152ab7f3139074aad822ffea855",    // The little-endian address of toAcct(ANTPeXCffDZCaCXxY9u2UdssB2EYpP4BMh)
                 "00e40b5402"
             ]
         },
@@ -340,17 +340,17 @@ for i in L:
     }
     ``` 
 
-23.2 解析预执行返回的数据：
+23.2 Parse the returned value fromn pre-execution.
 
-23.2.1 合约返回的是数字：将预执行的结果(若为空或```00```则为零)进行反序(每一个字节作为一个单位进行反序)，然后作为十六进制数字转换为十进制，即为我们想要得到的数据。
+23.2.1 Return Number, reverse (take one byte as a unit) the result (```00``` menas zero), then take it as hex number, transform it into decimal number.
 
-23.2.2 合约返回的是字符串：将预执行的结果作为十六进制字符串，转换为字符串，即为我们想要的字符串。
+23.2.2 Return String, take the result as the hex string, transform it into normal string.
 
-23.2.3 合约返回的是地址：将预执行的结果作为小端地址，转换为Base58地址，即为我们想要得到的地址。
+23.2.3 Return Address, take the result as the little-endian address, turn it into Base58 address.
 
-23.2.4 合约返回的是布尔：将预执行的结果转为数字后，若为零则```False```，若为1则```True```。
+23.2.4 Return Boolean, take the result as Number, turn it into decimal number. 0 means ```False```, 1 means ```True```.
 
-23.2.5 合约返回的是List: 将预执行的结果，依次取出，按照以上基本数据类型进行解析，即得到想要的结果。
+23.2.5 Return List, take the result as a list or array, take each element, parse the element based on the above rule.
 
 #### 24.  How to manage the authority management?
     
