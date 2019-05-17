@@ -1,6 +1,6 @@
 
 
-1. 什么是Native合约，Native合约有哪些方法可以调用？
+1. What is Native Contracts and which methods can be invoked inside the Native Contracts?
     
     Native合约是ONT，ONG合约及其它主链治理合约。可调用方法可在[源码](https://github.com/ontio/ontology/tree/master/smartcontract/service/native)中获得。
 
